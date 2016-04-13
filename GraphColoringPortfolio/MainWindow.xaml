@@ -1,0 +1,60 @@
+﻿<Window x:Class="GraphColoringPortfolio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Graph Coloring Portfolio" Height="Auto" Width="Auto">
+    <Grid Background="#FFE5E5E5" Margin="0,0,0,0" Width="Auto" Height="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+            <Label Content="Problem Space" FontWeight="Bold"/>
+            <Button x:Name="btn_LoadInstances" Content="Load Instances" Margin="10,10,10,10" Width="140" Click="btn_LoadInstances_Click"/>
+            <Button x:Name="btn_CreateEdgeLists" Content="Create Edge Lists" Margin="10,10,10,10" Width="140" Click="btn_CreateEdgeLists_Click"/>
+            <Label x:Name="lbl_NumberOfInstances" Content="0 # Instances Loaded"/>
+            <ScrollViewer MaxHeight="400">
+                <ListView x:Name="lv_GraphInstances" Margin="10,10,10,10" SelectionMode="Multiple"/>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto" Height="Auto">
+            <Label Content="Algorithm Space" FontWeight="Bold"/>
+            <Label Content="Constructive Algorithms"/>
+            <CheckBox x:Name="chk_BackTrackDSATUR" Content="BackTracking DSATUR" Checked="chk_BackTrackDSATUR_Checked" Unchecked="chk_BackTrackDSATUR_Unchecked"/>
+            <CheckBox x:Name="chk_DSATUR" Content="DSATUR" Unchecked="chk_DSATUR_Unchecked" Checked="chk_DSATUR_Checked"/>
+            <CheckBox x:Name="chk_RandomGreedy" Content="Simple Random Greedy" Checked="chk_RandomGreedy_Checked" Unchecked="chk_RandomGreedy_Unchecked"/>
+            <CheckBox x:Name="chk_RLF" Content="RLF" Unchecked="chk_RLF_Unchecked" Checked="chk_RLF_Checked"/>
+            <Label Content="Heuristics"/>
+            <CheckBox x:Name="chk_HillClimber" Content="HillClimber" Checked="chk_HillClimber_Checked" Unchecked="chk_HillClimber_Unchecked"/>
+            <CheckBox x:Name="chk_AntCol" Content="AntCol" Unchecked="chk_AntCol_Unchecked" Checked="chk_AntCol_Checked"/>
+            <CheckBox x:Name="chk_HEA" Content="HEA" Checked="chk_HEA_Checked" Unchecked="chk_HEA_Unchecked"/>
+            <CheckBox x:Name="chk_PartialCol" Content="PartialCol" Checked="chk_PartialCol_Checked" Unchecked="chk_PartialCol_Unchecked"/>
+            <CheckBox x:Name="chk_TabuCol" Content="TabuCol" Unchecked="chk_TabuCol_Unchecked" Checked="chk_TabuCol_Checked"/>
+            <StackPanel HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Height="Auto">
+                <Label Content="Performance Space" FontWeight="Bold"/>
+                <Button x:Name="btn_GatherMetrics" Content="Gather Performance Metrics" Margin="10,10,10,10" Click="btn_GatherMetrics_Click"/>
+                <Label x:Name="lbl_RemainingMetrics" Content="Execution Queue: "/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="Auto" Height="Auto">
+            <Label Content="Dataset Generation" FontWeight="Bold"/>
+            <Button x:Name="btn_CreateARFF" Content="Generate ARFF" Margin="10,10,10,10" Click="btn_CreateARFF_Click"/>
+
+            <Label Content="Learning Methods" FontWeight="Bold"/>
+            <CheckBox x:Name="chk_Classification" Content="Classification" Checked="chk_Classification_Checked" Unchecked="chk_Classification_Unchecked"/>
+            <CheckBox x:Name="chk_ClassificationAvgBest" Content="Average Best Criteria" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_ClassificationColorTime" Content="Color and CPU Time Criteria" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_ClassificationColorChecks" Content="Color and Constraint Checks Criteria" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_MultiClassification" Content="Multi-label Classification" Checked="chk_MultiClassification_Checked" Unchecked="chk_MultiClassification_Unchecked"/>
+            <CheckBox x:Name="chk_MultiClassificationZero" Content="0% Tolerance" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_MultiClassificationFive" Content="5% Tolerance" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_MultiClassificationTen" Content="10% Tolerance" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_Regression" Content="Regression" Checked="chk_Regression_Checked" Unchecked="chk_Regression_Unchecked"/>
+            <CheckBox x:Name="chk_RegressionColor" Content="Chromatic Number" Margin="10,0,0,0"/>
+            <CheckBox x:Name="chk_RegressionTime" Content="CPU Time" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

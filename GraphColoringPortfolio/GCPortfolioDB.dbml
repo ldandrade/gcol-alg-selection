@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GraphColoringPortfolio" Class="GCPortfolioDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LENOVO-NOTEBOOK\SQLEXPRESS;Initial Catalog=GraphColoringPortfolio;Integrated Security=True;Pooling=False" SettingsObjectName="GraphColoringPortfolio.Properties.Settings" SettingsPropertyName="GraphColoringPortfolioConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.GraphInstances" Member="GraphInstances">
+    <Type Name="GraphInstance">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="GraphInstance_PerformanceMetrics2" Member="PerformanceMetrics2s" ThisKey="Id" OtherKey="GraphID" Type="PerformanceMetrics2" />
+      <Association Name="GraphInstance_GColAlgorithmsRun" Member="GColAlgorithmsRuns" ThisKey="Id" OtherKey="GraphID" Type="GColAlgorithmsRun" />
+      <Association Name="GraphInstance_LabelClass" Member="LabelClasses" ThisKey="Id" OtherKey="GraphID" Type="LabelClass" />
+      <Association Name="GraphInstance_InstancesFeature" Member="InstancesFeatures" ThisKey="Id" OtherKey="GraphID" Type="InstancesFeature" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PerformanceMetrics2" Member="PerformanceMetrics2s">
+    <Type Name="PerformanceMetrics2">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GraphID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GColAlgorithm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Colors" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Miliseconds" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Checks" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="GraphInstance_PerformanceMetrics2" Member="GraphInstance" ThisKey="GraphID" OtherKey="Id" Type="GraphInstance" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GColAlgorithmsRuns" Member="GColAlgorithmsRuns">
+    <Type Name="GColAlgorithmsRun">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GraphID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GColAlgorithm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RunComplete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RunResult" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TotalTimeMiliSec" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="GraphInstance_GColAlgorithmsRun" Member="GraphInstance" ThisKey="GraphID" OtherKey="Id" Type="GraphInstance" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LabelClasses" Member="LabelClasses">
+    <Type Name="LabelClass">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GraphID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LabelColorTime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabelColorChecks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabelAvgBest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabelAvgTimeCap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MultiLabel0" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MultiLabel5" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MultiLabel10" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RegColDSatur" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColBktrDSatur" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColRLF" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColRandomGreedy" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColHEA" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColPartialCol" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColTabuCol" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegColAntCol" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="RegTimeDSatur" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeBktrDSatur" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeRLF" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeRandomGreedy" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeHEA" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimePartialCol" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeTabuCol" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="RegTimeAntCol" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="GraphInstance_LabelClass" Member="GraphInstance" ThisKey="GraphID" OtherKey="Id" Type="GraphInstance" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstancesFeatures" Member="InstancesFeatures">
+    <Type Name="InstancesFeature">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GraphID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="numberofnodes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="numberofedges" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rationodesedges" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="ratioedgesnodes" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="density" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="mindegree" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="maxdegree" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="meandegree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stddegree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vcdegree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="mediandegree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1degree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3degree" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="minbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vcbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianbtwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1btwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3btwns" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="mincloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxcloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meancloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdcloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vccloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="mediancloseness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1closeness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3closeness" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="minegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vcegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianegvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1egvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3egvcentrality" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="mineccentricity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="maxeccentricity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="meaneccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdeccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vceccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianeccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1eccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3eccentricity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="minlocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxlocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanlocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdlocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vclocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianlocalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1clustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3clustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="minlocalwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxlocalwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanlocalwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdlocalwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vclocalwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianwclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1wclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3wclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="adjindex" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="seclargestadjegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="secsmallestadjegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="smallestadjegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanspectrum" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="stdspectrum" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="energy" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="gaplargestand2ndlargestadj" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="laplacianindex" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="seclargestlapegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="smallestnzlapegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="secondsmallestnzlapegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="algconnectivity" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="smallestlapegv" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="gaplargestandsmallestnzlap" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="wienerindex" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="avgpathlength" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="girth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="degeneracy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="connectedcomponents" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rank" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="corank" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szegedindex" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="beta" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="minmaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxmaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="meanmaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="vcmaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="medianmaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q1maxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="q3maxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="emaxcliquen" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="timemaxclique" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="maxmaxclique" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="treewidth" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="timetreewidth" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="globalclustering" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="ratioupbndlwbnd" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="ratiolwbndupbnd" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="distupbndlwbnd1" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Column Name="distupbndlwbnd2" Type="System.Decimal" DbType="Decimal(28,10)" CanBeNull="true" />
+      <Association Name="GraphInstance_InstancesFeature" Member="GraphInstance" ThisKey="GraphID" OtherKey="Id" Type="GraphInstance" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
